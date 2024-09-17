@@ -7,6 +7,9 @@ import math
 
 class PositionalEmbedding(nn.Module):
     def __init__(self, d_model, max_len=5000):
+        """
+        This function will calculate the positional encoding for each token using sine-cosine.
+        """
         super(PositionalEmbedding, self).__init__()
         # Compute the positional encodings once in log space.
         pe = torch.zeros(max_len, d_model).float()
@@ -28,6 +31,9 @@ class PositionalEmbedding(nn.Module):
 
 class TokenEmbedding(nn.Module):
     def __init__(self, c_in, d_model):
+        """
+        This function will initiate a CNN layer for token embeddings for semantic meaning.
+        """
         super(TokenEmbedding, self).__init__()
         padding = 1 if torch.__version__ >= '1.5.0' else 2
         self.tokenConv = nn.Conv1d(in_channels=c_in, out_channels=d_model,
@@ -44,6 +50,9 @@ class TokenEmbedding(nn.Module):
 
 class FixedEmbedding(nn.Module):
     def __init__(self, c_in, d_model):
+        """
+        This function will add non-trainable embeddings.
+        """
         super(FixedEmbedding, self).__init__()
 
         w = torch.zeros(c_in, d_model).float()

@@ -14,7 +14,7 @@ random.seed(fix_seed)
 torch.manual_seed(fix_seed)
 np.random.seed(fix_seed)
 
-parser = argparse.ArgumentParser(description='TimesNet')
+parser = argparse.ArgumentParser(description='GPT4TS')
 
 # basic config
 parser.add_argument('--task_name', type=str, required=True, default='long_term_forecast',
@@ -125,6 +125,8 @@ elif args.task_name == 'classification':
     Exp = Exp_Classification
 else:
     Exp = Exp_Long_Term_Forecast
+
+print(Exp)
 
 if args.is_training:
     for ii in range(args.itr):
